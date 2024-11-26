@@ -50,3 +50,14 @@ if Street.is_valid_house_number(-3):
     main_street.add_house(-3)
 else:
     print("Invalid house number!")  # Вывод: Invalid house number!
+
+# Объяснение:
+    
+# set_city и get_city (classmethod):
+
+# set_city изменяет общий атрибут city для всех экземпляров.
+# get_city позволяет получить текущее значение общего атрибута.
+# is_valid_house_number (staticmethod):
+
+# Проверяет, является ли номер дома допустимым (положительное число).
+# Логически относится к классу Street, но не использует атрибуты класса или экземпляра.
