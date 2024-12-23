@@ -102,3 +102,136 @@ print(main_street.get_info_street())  # Вывод: Street name: Main Street, Nu
 main_street.remove_house(30)  # Вывод: Cannot have negative houses!
 ```
 Обязательно просмотрите файл [street.py](https://github.com/TeachKait20/-9-Python-Object-Oriented-Programming-OOP/blob/main/street.py). В нём будет дополнительная информация. 
+
+## Пример 1
+
+Рассмотрим программу, моделирующую работу железнодорожной станции. Она предоставляет функционал для управления поездами и станциями. Состоит из класса `Railway_Station`, который объединяет данные и методы, связанные с железнодорожными станциями и расписанием поездов.
+
+```python
+class Railway_Station():
+    all_stations = ["Ближняя", "Малиновка", "Суетино", "Носово", "Внуково", "Путь-33", "Грачёво", "Дальняя",
+                    "СНТ-15", "Зелёный лес", "Стулово", "Железняково", "Островки", "Майнино", "Акулово-1"]
+
+    def __init__(self, number_train: int, model_train: str, departure_time: str, train_path: int, last_station: int):
+        """
+        Информация о новом поезде для экземпляров класса:
+
+           number_train - (int) номер поезда. > 0
+           model_train - (str) название поезда. 'Name'
+           departure_time - (str) время отбытия. '12:34'
+           train_path - (int) путь №. > 0
+           last_station - (int) выбор из списка all_stations, отсчёт с 1. > 0 и < длины all_stations
+        """
+
+        self.number_train = number_train  # Номер поезда
+        self.model_train = model_train  # Модель поезда
+        self.departure_time = departure_time
+        self.train_path = train_path  # Пусть уезда
+
+        # Проверка на правильность ввода индекса (есть ли столько элементов в all_stations)
+        try:
+            self.last_station = self.all_stations[last_station - 1]  # Номер конечной станции из списка all_stations
+        except IndexError:
+            self.last_station = None  # Устанавливаем в None, если индекс некорректен
+
+    def show_information_to_passengers(self):
+        """Информация о поездах для пассажиров"""
+        if self.last_station:  # Проверяем, есть ли корректная станция
+            print(f"Поезд {self.model_train} №{self.number_train} отправляется в {self.departure_time} "
+                  f"с {self.train_path} пути до станции {self.last_station}.\n")
+        else:
+            print(f"Информация о поезде {self.model_train} №{self.number_train} недоступна из-за ошибки выбора станции.\n")
+
+    @classmethod
+    def del_station(self):
+        print("Все станции: ")
+        for num, station in enumerate(self.all_stations):
+            print(f"{num + 1}: {station}")
+        print()
+        print("Введите название станции, которую нужно удалить.")
+        del_station = input('> ')
+        if del_station in self.all_stations:
+            self.all_stations.remove(del_station)
+            for num, station in enumerate(self.all_stations):
+                print(f"{num + 1}: {station}")
+            print()
+        else:
+            print("Такой станции нет в списке.")
+
+    @classmethod
+    def add_station(self):
+        print("Все станции: ")
+        for num, station in enumerate(self.all_stations):
+            print(f"{num+1}: {station}")
+        print()
+        print("Введите название станции, которую нужно добавить.")
+        new_station = input('> ')
+        if new_station not in self.all_stations:
+            print(f"Введите какая по счёту должна быть станция {new_station}")
+            num_station = input("> ")
+            try:
+                num_station = int(num_station) - 1
+            except ValueError:
+                print("Ошибка. Введено не число.")
+            else:
+                if num_station <= 0:
+                    print("Станции начинаются с 1.")
+                else:
+                    self.all_stations.insert(num_station, new_station)
+                    for num, station in enumerate(self.all_stations):
+                        print(f"{num + 1}: {station}")
+                    print()
+        else:
+            print("Станция уже есть в списке.")
+
+
+train_1 = Railway_Station(703, 'Ласточка', '10:00', 11, 7)
+train_1.show_information_to_passengers()
+
+train_2 = Railway_Station(690, 'дальнего следования', '00:30', 3, 100)
+train_2.show_information_to_passengers()
+
+admin_1 = Railway_Station.add_station()
+admin_2 = Railway_Station.del_station()
+```
+**Основные части программы**
+1. Класс Railway_Station <br>
+Класс содержит информацию о поездах, списке станций и предоставляет методы для работы с ними.
+
+2. Атрибуты класса <br>
+all_stations - список всех доступных станций. Это общий атрибут для всех экземпляров класса.
+
+3. Методы класса и экземпляра <br>
+
+* `__init__(...)`: <br>
+
+Инициализирует новый поезд с его номером, моделью, временем отправления, номером пути и конечной станцией.
+Если переданный индекс конечной станции некорректен, устанавливает её значение в `None`.
+
+* `show_information_to_passengers()`: <br>
+
+Показывает информацию для пассажиров о конкретном поезде: номер, модель, время отправления, путь и конечная станция. Если информация некорректна (например, неверно указана конечная станция), выводится предупреждение.
+Методы класса:
+
+* `add_station()`: <br>
+
+Позволяет добавить новую станцию в общий список `all_stations`.
+Просит пользователя указать:
+Название новой станции.
+Порядковый номер, под которым станция должна быть добавлена.
+Обрабатывает ошибки (например, некорректный ввод номера или добавление уже существующей станции).
+Выводит обновлённый список станций.
+
+* `del_station()`: <br>
+
+Позволяет удалить станцию из списка `all_stations`.
+Показывает пользователю текущий список станций с порядковыми номерами.
+Просит ввести название станции для удаления.
+Если станция найдена, удаляет её и показывает обновлённый список. В противном случае выводит сообщение об ошибке.
+
+4. Пример использования
+Создаются два экземпляра класса `Railway_Station`, которые представляют поезда:
+`train_1` — поезд с корректной информацией о конечной станции.
+`train_2` — поезд с некорректной конечной станцией (передан индекс вне диапазона).
+Информация о поездах выводится с помощью метода `show_information_to_passengers`.
+Методы класса `add_station` и `del_station` используются для добавления и удаления станций, соответственно.
