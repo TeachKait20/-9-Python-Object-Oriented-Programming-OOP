@@ -101,4 +101,4 @@ print(main_street.get_info_street())  # Вывод: Street name: Main Street, Nu
 
 main_street.remove_house(30)  # Вывод: Cannot have negative houses!
 ```
-Обязательно просмотрите файл street.py. В нём будет дополнительная информация. 
+Обязательно просмотрите файл [street.py](https://github.com/TeachKait20/-9-Python-Object-Oriented-Programming-OOP/blob/main/street.py). В нём будет дополнительная информация. 
