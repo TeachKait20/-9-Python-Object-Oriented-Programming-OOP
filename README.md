@@ -105,6 +105,8 @@ main_street.remove_house(30)  # Вывод: Cannot have negative houses!
 
 ## Пример
 
+<img src="https://github.com/TeachKait20/NoneCode/blob/main/OOP+python/img5.gif?raw=true" width="400">
+
 Рассмотрим программу, моделирующую работу железнодорожной станции. Она предоставляет функционал для управления поездами и станциями. Состоит из класса `Railway_Station`, который объединяет данные и методы, связанные с железнодорожными станциями и расписанием поездов.
 
 ```python
@@ -237,6 +239,10 @@ admin_2 = Railway_Station.del_station()
 `train_2` — поезд с некорректной конечной станцией (передан индекс вне диапазона). <br>
 Информация о поездах выводится с помощью метода `show_information_to_passengers`. <br>
 Методы класса `add_station` и `del_station` используются для добавления и удаления станций, соответственно. <br>
+
+## Задания для самостоятельного выполнения
+
+<img src="https://github.com/TeachKait20/NoneCode/blob/main/OOP+python/img4.gif?raw=true" width="400">
 
 ## Задание 1
 
