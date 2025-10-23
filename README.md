@@ -1,6 +1,6 @@
 # -9-Python-Object-Oriented-Programming-OOP
 ## Python Объектно-ориентированное программирование (ООП)
-
+ 
 <img src="https://github.com/TeachKait20/NoneCode/blob/main/OOP+python/img1.gif?raw=true" width="400">
 
 **Объектно-ориентированное программирование** — это парадигма программирования, которая основывается на концепции объектов. <br><br>
